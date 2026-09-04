@@ -1,0 +1,3876 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Camusal12 • Central</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            #20283d 0%,
+            #10141d 35%,
+            #080b10 100%
+        );
+
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================================================
+   CORES / VARIÁVEIS
+========================================================= */
+
+:root {
+
+    --primary: #6675ff;
+    --primary-dark: #4d5be4;
+
+    --background: #080b10;
+    --panel: #121722;
+    --panel-2: #181e2b;
+
+    --border: rgba(255,255,255,.09);
+
+    --text: #ffffff;
+    --muted: #98a2b5;
+
+    --success: #20c997;
+    --danger: #ef5350;
+    --warning: #ffb020;
+
+    --radius: 18px;
+
+    --shadow:
+        0 15px 45px rgba(0,0,0,.30);
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #090c12;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #343b50;
+    border-radius: 20px;
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+#loginPage {
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #242c45 0%,
+            #10141e 45%,
+            #07090d 100%
+        );
+}
+
+.login-container {
+
+    width: 100%;
+    max-width: 440px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(31,38,55,.97),
+            rgba(14,18,27,.97)
+        );
+
+    border: 1px solid var(--border);
+
+    border-radius: 24px;
+
+    padding: 32px;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.55);
+
+    backdrop-filter: blur(20px);
+}
+
+.login-logo {
+
+    text-align: center;
+
+    font-size: 42px;
+
+    margin-bottom: 8px;
+}
+
+.login-title {
+
+    text-align: center;
+
+    font-size: 28px;
+
+    margin-bottom: 8px;
+}
+
+.login-subtitle {
+
+    text-align: center;
+
+    color: var(--muted);
+
+    margin-bottom: 28px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #dbe0ea;
+
+    font-size: 14px;
+}
+
+.form-control {
+
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border-radius: 12px;
+
+    border: 1px solid #30384b;
+
+    background: #0b0f16;
+
+    color: white;
+
+    outline: none;
+
+    transition: .2s;
+}
+
+.form-control:focus {
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(102,117,255,.12);
+}
+
+textarea.form-control {
+
+    min-height: 110px;
+
+    resize: vertical;
+}
+
+.login-button {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary-dark)
+        );
+
+    color: white;
+
+    font-weight: 700;
+
+    margin-top: 5px;
+
+    transition: .2s;
+}
+
+.login-button:hover {
+    transform: translateY(-2px);
+}
+
+.switch-login {
+
+    text-align: center;
+
+    color: var(--muted);
+
+    margin-top: 20px;
+
+    font-size: 14px;
+}
+
+.switch-login span {
+
+    color: #8590ff;
+
+    cursor: pointer;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+#app {
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.topbar {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    min-height: 72px;
+
+    padding: 12px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    background:
+        rgba(10,14,21,.88);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.brand-icon {
+
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6675ff,
+            #4654d8
+        );
+
+    font-size: 22px;
+
+    box-shadow:
+        0 8px 25px rgba(102,117,255,.25);
+}
+
+.brand-text h1 {
+    font-size: 18px;
+}
+
+.brand-text span {
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+.top-user {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.user-badge {
+
+    display: flex;
+
+    flex-direction: column;
+
+    text-align: right;
+}
+
+.user-badge strong {
+    font-size: 14px;
+}
+
+.user-badge span {
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+.logout-button {
+
+    border: 1px solid var(--border);
+
+    background: #1c2331;
+
+    color: white;
+
+    border-radius: 10px;
+
+    padding: 10px 14px;
+}
+
+.logout-button:hover {
+    background: #292f3e;
+}
+
+
+/* =========================================================
+   NAV
+========================================================= */
+
+.navigation {
+
+    position: sticky;
+
+    top: 72px;
+
+    z-index: 900;
+
+    display: flex;
+
+    gap: 7px;
+
+    overflow-x: auto;
+
+    padding: 10px 16px;
+
+    background:
+        rgba(11,14,21,.92);
+
+    border-bottom:
+        1px solid var(--border);
+
+    backdrop-filter: blur(15px);
+}
+
+.nav-button {
+
+    flex-shrink: 0;
+
+    border: none;
+
+    border-radius: 11px;
+
+    padding: 10px 15px;
+
+    background: #171d29;
+
+    color: #b8c0cf;
+
+    font-weight: 600;
+
+    transition: .2s;
+}
+
+.nav-button:hover {
+
+    color: white;
+
+    background: #222a39;
+}
+
+.nav-button.active {
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary-dark)
+        );
+
+    box-shadow:
+        0 5px 20px rgba(102,117,255,.20);
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main {
+
+    width: 100%;
+
+    max-width: 1250px;
+
+    margin: auto;
+
+    padding: 30px 20px 70px;
+}
+
+.page {
+    animation: fadeIn .25s ease;
+}
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page-header {
+    margin-bottom: 25px;
+}
+
+.page-title {
+
+    font-size: 32px;
+
+    margin-bottom: 7px;
+}
+
+.page-description {
+
+    color: var(--muted);
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(26,32,45,.96),
+            rgba(17,22,31,.96)
+        );
+
+    border:
+        1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    padding: 21px;
+
+    box-shadow: var(--shadow);
+}
+
+.grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(230px, 1fr)
+        );
+
+    gap: 18px;
+}
+
+.card h3 {
+    margin-bottom: 8px;
+}
+
+.card p {
+
+    color: var(--muted);
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+.hero {
+
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 35px;
+
+    margin-bottom: 22px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #252d4a,
+            #141a28
+        );
+
+    border: 1px solid var(--border);
+}
+
+.hero:after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    right: -80px;
+    top: -80px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(102,117,255,.15);
+}
+
+.hero h2 {
+
+    font-size: 32px;
+
+    margin-bottom: 10px;
+}
+
+.hero p {
+
+    color: #b4bdce;
+
+    max-width: 700px;
+
+    line-height: 1.6;
+}
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(180px,1fr)
+        );
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+.stat-card {
+
+    padding: 22px;
+
+    border-radius: 17px;
+
+    background: #141a24;
+
+    border: 1px solid var(--border);
+}
+
+.stat-icon {
+
+    font-size: 25px;
+
+    margin-bottom: 10px;
+}
+
+.stat-number {
+
+    font-size: 30px;
+
+    font-weight: 800;
+
+    margin-bottom: 4px;
+}
+
+.stat-label {
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   FREE FIRE
+========================================================= */
+
+.freefire-banner {
+
+    position: relative;
+
+    overflow: hidden;
+
+    margin-bottom: 25px;
+
+    padding: 30px;
+
+    border-radius: 22px;
+
+    border: 1px solid #523e20;
+
+    background:
+        linear-gradient(
+            135deg,
+            #302414,
+            #17130e
+        );
+}
+
+.freefire-banner h2 {
+
+    color: #ffb52b;
+
+    font-size: 32px;
+
+    margin-bottom: 8px;
+}
+
+.freefire-banner p {
+
+    color: #c6bcae;
+
+    line-height: 1.6;
+}
+
+.platform-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(220px,1fr)
+        );
+
+    gap: 18px;
+}
+
+.platform-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    min-height: 180px;
+
+    transition: .25s;
+}
+
+.platform-card:hover {
+
+    transform: translateY(-5px);
+
+    border-color:
+        rgba(102,117,255,.55);
+}
+
+.platform-icon {
+
+    font-size: 40px;
+
+    margin-bottom: 15px;
+}
+
+.platform-card h3 {
+
+    font-size: 19px;
+
+    margin-bottom: 7px;
+}
+
+.platform-card p {
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   PLATFORM CONTENT
+========================================================= */
+
+.platform-toolbar {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+
+    flex-wrap: wrap;
+}
+
+.back-button {
+
+    border: none;
+
+    background: #222938;
+
+    color: white;
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+}
+
+.platform-title {
+
+    margin-top: 20px;
+
+    margin-bottom: 20px;
+
+    font-size: 28px;
+}
+
+
+/* =========================================================
+   ADMIN FORM
+========================================================= */
+
+.admin-form {
+
+    margin-bottom: 25px;
+
+    border:
+        1px solid rgba(255,176,32,.25);
+
+    background:
+        linear-gradient(
+            145deg,
+            #211d15,
+            #15171d
+        );
+}
+
+.admin-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 18px;
+
+    color: #ffc04b;
+}
+
+.form-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0,1fr)
+        );
+
+    gap: 15px;
+}
+
+.form-full {
+    grid-column: 1 / -1;
+}
+
+.button-row {
+
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin-top: 8px;
+}
+
+.primary-button,
+.success-button,
+.danger-button,
+.secondary-button,
+.warning-button {
+
+    border: none;
+
+    padding: 11px 16px;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+
+    transition: .2s;
+}
+
+.primary-button {
+
+    color: white;
+
+    background: var(--primary);
+}
+
+.success-button {
+
+    color: white;
+
+    background: var(--success);
+}
+
+.danger-button {
+
+    color: white;
+
+    background: var(--danger);
+}
+
+.secondary-button {
+
+    color: white;
+
+    background: #303848;
+}
+
+.warning-button {
+
+    color: #111;
+
+    background: var(--warning);
+}
+
+.primary-button:hover,
+.success-button:hover,
+.danger-button:hover,
+.secondary-button:hover,
+.warning-button:hover {
+    transform: translateY(-1px);
+    opacity: .9;
+}
+
+
+/* =========================================================
+   SENSIBILIDADES
+========================================================= */
+
+.sensitivity-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(300px,1fr)
+        );
+
+    gap: 18px;
+}
+
+.sensitivity-card {
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1b212d,
+            #11161f
+        );
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 18px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.20);
+}
+
+.sensitivity-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-bottom: 10px;
+}
+
+.sensitivity-top h3 {
+
+    font-size: 18px;
+
+    margin: 0;
+}
+
+.dpi-badge {
+
+    background: #252d3d;
+
+    color: #9facff;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    white-space: nowrap;
+}
+
+.sensitivity-description {
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.55;
+
+    margin-bottom: 15px;
+}
+
+.sensitivity-values {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap: 8px;
+
+    margin-bottom: 15px;
+}
+
+.sensitivity-value {
+
+    background: #0b0f15;
+
+    border: 1px solid rgba(255,255,255,.05);
+
+    padding: 10px;
+
+    border-radius: 9px;
+}
+
+.sensitivity-value span {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    margin-bottom: 3px;
+}
+
+.sensitivity-value strong {
+
+    color: #ffffff;
+
+    font-size: 17px;
+}
+
+.tutorial {
+
+    margin-top: 15px;
+
+    border-top:
+        1px solid var(--border);
+
+    padding-top: 15px;
+}
+
+.tutorial-title {
+
+    font-size: 13px;
+
+    color: #c7cfdd;
+
+    margin-bottom: 8px;
+}
+
+.video-link {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: #8c98ff;
+
+    text-decoration: none;
+
+    word-break: break-all;
+
+    font-size: 13px;
+}
+
+.video-link:hover {
+    text-decoration: underline;
+}
+
+.card-actions {
+
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    margin-top: 17px;
+
+    padding-top: 14px;
+
+    border-top:
+        1px solid var(--border);
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty-state {
+
+    padding: 40px 20px;
+
+    text-align: center;
+
+    border-radius: 18px;
+
+    border:
+        1px dashed #394255;
+
+    color: #8791a4;
+
+    background: #11161f;
+}
+
+.empty-state .empty-icon {
+
+    font-size: 38px;
+
+    margin-bottom: 10px;
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-box {
+
+    width: 100%;
+
+    max-width: 500px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   FOTOS / VÍDEOS
+========================================================= */
+
+.media-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(260px,1fr)
+        );
+
+    gap: 18px;
+}
+
+.media-card {
+
+    overflow: hidden;
+
+    border-radius: 17px;
+
+    background: #151b25;
+
+    border: 1px solid var(--border);
+}
+
+.media-placeholder {
+
+    height: 190px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #252d3b,
+            #11151d
+        );
+
+    font-size: 55px;
+
+    color: #596478;
+}
+
+.media-body {
+    padding: 17px;
+}
+
+.media-body p {
+
+    color: var(--muted);
+
+    line-height: 1.5;
+
+    margin-top: 7px;
+}
+
+
+/* =========================================================
+   ADMIN
+========================================================= */
+
+.user-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.user-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 15px;
+
+    background: #0f141c;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 12px;
+}
+
+.user-row-info strong {
+
+    display: block;
+
+    margin-bottom: 5px;
+}
+
+.user-row-info span {
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+.role-badge {
+
+    display: inline-block;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    background: #293143;
+
+    color: #bdc6d7;
+}
+
+.role-admin {
+
+    background: #4c3900;
+
+    color: #ffd45d;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+#toastContainer {
+
+    position: fixed;
+
+    right: 20px;
+
+    bottom: 20px;
+
+    z-index: 9999;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.toast {
+
+    min-width: 260px;
+
+    max-width: 350px;
+
+    padding: 14px 16px;
+
+    border-radius: 12px;
+
+    background: #1d2431;
+
+    border:
+        1px solid var(--border);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.4);
+
+    animation:
+        toastIn .25s ease;
+}
+
+.toast.success {
+    border-left: 4px solid var(--success);
+}
+
+.toast.error {
+    border-left: 4px solid var(--danger);
+}
+
+.toast.info {
+    border-left: 4px solid var(--primary);
+}
+
+@keyframes toastIn {
+
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media(max-width: 700px) {
+
+    .topbar {
+
+        padding: 10px 12px;
+
+    }
+
+    .brand-text {
+        display: none;
+    }
+
+    .user-badge {
+        display: none;
+    }
+
+    .navigation {
+
+        top: 64px;
+
+        padding: 8px;
+    }
+
+    main {
+
+        padding:
+            22px 12px 50px;
+    }
+
+    .page-title {
+
+        font-size: 26px;
+    }
+
+    .hero,
+    .freefire-banner {
+
+        padding: 23px;
+    }
+
+    .hero h2,
+    .freefire-banner h2 {
+
+        font-size: 25px;
+    }
+
+    .form-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .form-full {
+
+        grid-column: auto;
+    }
+
+    .sensitivity-values {
+
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .user-row {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     LOGIN
+========================================================= -->
+
+<section id="loginPage">
+
+    <div class="login-container">
+
+        <div class="login-logo">
+            🔥
+        </div>
+
+        <h1 class="login-title">
+            Camusal12
+        </h1>
+
+        <p class="login-subtitle" id="loginSubtitle">
+            Entre na sua conta
+        </p>
+
+
+        <!-- LOGIN -->
+
+        <div id="loginForm">
+
+            <div class="form-group">
+
+                <label>
+                    Usuário
+                </label>
+
+                <input
+                    id="loginUsername"
+                    class="form-control"
+                    type="text"
+                    autocomplete="username"
+                    placeholder="Digite seu usuário"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Senha
+                </label>
+
+                <input
+                    id="loginPassword"
+                    class="form-control"
+                    type="password"
+                    autocomplete="current-password"
+                    placeholder="Digite sua senha"
+                >
+
+            </div>
+
+
+            <button
+                class="login-button"
+                onclick="login()"
+            >
+                Entrar
+            </button>
+
+
+            <div class="switch-login">
+
+                Não possui conta?
+
+                <span onclick="showRegister()">
+                    Criar conta
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- REGISTRO -->
+
+        <div id="registerForm" class="hidden">
+
+            <div class="form-group">
+
+                <label>
+                    Nome de usuário
+                </label>
+
+                <input
+                    id="registerUsername"
+                    class="form-control"
+                    type="text"
+                    placeholder="Escolha um usuário"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Senha
+                </label>
+
+                <input
+                    id="registerPassword"
+                    class="form-control"
+                    type="password"
+                    placeholder="Crie uma senha"
+                >
+
+            </div>
+
+
+            <button
+                class="login-button"
+                onclick="registerUser()"
+            >
+                Criar conta
+            </button>
+
+
+            <div class="switch-login">
+
+                Já possui conta?
+
+                <span onclick="showLogin()">
+                    Entrar
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     APP
+========================================================= -->
+
+<section id="app" class="hidden">
+
+
+<!-- HEADER -->
+
+<header class="topbar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            🔥
+        </div>
+
+        <div class="brand-text">
+
+            <h1>
+                Camusal12
+            </h1>
+
+            <span>
+                Central de conteúdo
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="top-user">
+
+        <div class="user-badge">
+
+            <strong id="currentUsername">
+                Usuário
+            </strong>
+
+            <span id="currentRole">
+                Membro
+            </span>
+
+        </div>
+
+        <button
+            class="logout-button"
+            onclick="logout()"
+        >
+            Sair
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- NAVEGAÇÃO -->
+
+<nav class="navigation">
+
+    <button
+        class="nav-button active"
+        onclick="openPage('dashboardPage', this)"
+    >
+        🏠 Início
+    </button>
+
+
+    <button
+        class="nav-button"
+        onclick="openPage('freeFirePage', this)"
+    >
+        🔥 Free Fire
+    </button>
+
+
+    <button
+        class="nav-button"
+        onclick="openPage('techniquePage', this)"
+    >
+        🎯 A Técnica de 1 2
+    </button>
+
+
+    <button
+        class="nav-button"
+        onclick="openPage('photosPage', this)"
+    >
+        🖼️ Fotos
+    </button>
+
+
+    <button
+        class="nav-button"
+        onclick="openPage('videosPage', this)"
+    >
+        🎥 Vídeos
+    </button>
+
+
+    <button
+        id="adminNav"
+        class="nav-button hidden"
+        onclick="openPage('adminPage', this)"
+    >
+        ⚙️ Administração
+    </button>
+
+</nav>
+
+
+
+<main>
+
+
+<!-- =========================================================
+     DASHBOARD
+========================================================= -->
+
+<section
+    id="dashboardPage"
+    class="page"
+>
+
+    <div class="hero">
+
+        <h2>
+            Bem-vindo à Central 🔥
+        </h2>
+
+        <p>
+            Aqui você encontra as configurações,
+            sensibilidades, vídeos e conteúdos
+            organizados em um único lugar.
+        </p>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                👥
+            </div>
+
+            <div
+                id="statUsers"
+                class="stat-number"
+            >
+                0
+            </div>
+
+            <div class="stat-label">
+                Usuários
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🎚️
+            </div>
+
+            <div
+                id="statSensitivities"
+                class="stat-number"
+            >
+                0
+            </div>
+
+            <div class="stat-label">
+                Sensibilidades
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🎥
+            </div>
+
+            <div
+                id="statVideos"
+                class="stat-number"
+            >
+                0
+            </div>
+
+            <div class="stat-label">
+                Vídeos
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📱
+            </div>
+
+            <div
+                id="statPlatforms"
+                class="stat-number"
+            >
+                5
+            </div>
+
+            <div class="stat-label">
+                Plataformas
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            🔥 Free Fire
+        </h3>
+
+        <p>
+            Entre na área Free Fire para encontrar
+            as configurações separadas por plataforma.
+        </p>
+
+        <div class="button-row">
+
+            <button
+                class="primary-button"
+                onclick="goToFreeFire()"
+            >
+                Abrir Free Fire
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FREE FIRE
+========================================================= -->
+
+<section
+    id="freeFirePage"
+    class="page hidden"
+>
+
+    <div class="freefire-banner">
+
+        <h2>
+            🔥 Free Fire
+        </h2>
+
+        <p>
+            Escolha uma das cinco plataformas abaixo.
+            Dentro de cada uma você encontrará
+            sensibilidades e vídeos ensinando como configurar.
+        </p>
+
+    </div>
+
+
+    <!-- ESCOLHA DE PLATAFORMA -->
+
+    <div id="platformSelection">
+
+        <div class="page-header">
+
+            <h2 class="page-title">
+                Plataformas
+            </h2>
+
+            <p class="page-description">
+                Selecione onde você joga.
+            </p>
+
+        </div>
+
+
+        <div class="platform-grid">
+
+
+            <!-- ANDROID -->
+
+            <div
+                class="card platform-card"
+                onclick="openPlatform('android')"
+            >
+
+                <div class="platform-icon">
+                    📱
+                </div>
+
+                <h3>
+                    Mobile Android
+                </h3>
+
+                <p>
+                    Sensibilidades para celulares
+                    Android.
+                </p>
+
+            </div>
+
+
+            <!-- IOS -->
+
+            <div
+                class="card platform-card"
+                onclick="openPlatform('ios')"
+            >
+
+                <div class="platform-icon">
+                    🍎
+                </div>
+
+                <h3>
+                    Mobile iOS
+                </h3>
+
+                <p>
+                    Configurações para dispositivos
+                    Apple.
+                </p>
+
+            </div>
+
+
+            <!-- EMULADOR -->
+
+            <div
+                class="card platform-card"
+                onclick="openPlatform('emulator')"
+            >
+
+                <div class="platform-icon">
+                    🎮
+                </div>
+
+                <h3>
+                    Emulador
+                </h3>
+
+                <p>
+                    Sensibilidades para jogar
+                    usando emuladores.
+                </p>
+
+            </div>
+
+
+            <!-- MOBILADOR -->
+
+            <div
+                class="card platform-card"
+                onclick="openPlatform('mobilador')"
+            >
+
+                <div class="platform-icon">
+                    📲
+                </div>
+
+                <h3>
+                    Mobilador
+                </h3>
+
+                <p>
+                    Configurações e sensibilidades
+                    para Mobilador.
+                </p>
+
+            </div>
+
+
+            <!-- MOBILE -->
+
+            <div
+                class="card platform-card"
+                onclick="openPlatform('mobile')"
+            >
+
+                <div class="platform-icon">
+                    📱
+                </div>
+
+                <h3>
+                    Mobile
+                </h3>
+
+                <p>
+                    Sensibilidades gerais para
+                    dispositivos móveis.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CONTEÚDO DA PLATAFORMA -->
+
+    <div
+        id="platformContent"
+        class="hidden"
+    >
+
+        <div class="platform-toolbar">
+
+            <button
+                class="back-button"
+                onclick="backToPlatforms()"
+            >
+                ← Voltar
+            </button>
+
+        </div>
+
+
+        <h2
+            id="platformTitle"
+            class="platform-title"
+        >
+        </h2>
+
+
+        <!-- PESQUISA -->
+
+        <input
+            id="sensitivitySearch"
+            class="form-control search-box"
+            type="search"
+            placeholder="🔎 Pesquisar sensibilidade..."
+            oninput="renderSensitivities()"
+        >
+
+
+        <!-- FORM ADMIN -->
+
+        <div
+            id="sensitivityAdminForm"
+            class="card admin-form hidden"
+        >
+
+            <h3 class="admin-title">
+                👑 Adicionar sensibilidade
+            </h3>
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Nome da configuração
+                    </label>
+
+                    <input
+                        id="sensName"
+                        class="form-control"
+                        placeholder="Ex: Sensibilidade Rush"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        DPI
+                    </label>
+
+                    <input
+                        id="sensDpi"
+                        class="form-control"
+                        type="number"
+                        placeholder="Ex: 600"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Geral
+                    </label>
+
+                    <input
+                        id="sensGeral"
+                        class="form-control"
+                        type="number"
+                        min="0"
+                        max="200"
+                        placeholder="0 - 200"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Ponto Vermelho
+                    </label>
+
+                    <input
+                        id="sensRed"
+                        class="form-control"
+                        type="number"
+                        min="0"
+                        max="200"
+                        placeholder="0 - 200"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Mira 2x
+                    </label>
+
+                    <input
+                        id="sens2x"
+                        class="form-control"
+                        type="number"
+                        min="0"
+                        max="200"
+                        placeholder="0 - 200"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Mira 4x
+                    </label>
+
+                    <input
+                        id="sens4x"
+                        class="form-control"
+                        type="number"
+                        min="0"
+                        max="200"
+                        placeholder="0 - 200"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Mira AWM
+                    </label>
+
+                    <input
+                        id="sensAwm"
+                        class="form-control"
+                        type="number"
+                        min="0"
+                        max="200"
+                        placeholder="0 - 200"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Olhadinha
+                    </label>
+
+                    <input
+                        id="sensLook"
+                        class="form-control"
+                        type="number"
+                        min="0"
+                        max="200"
+                        placeholder="0 - 200"
+                    >
+
+                </div>
+
+
+                <div class="form-group form-full">
+
+                    <label>
+                        Descrição
+                    </label>
+
+                    <textarea
+                        id="sensDescription"
+                        class="form-control"
+                        placeholder="Explique essa configuração..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group form-full">
+
+                    <label>
+                        Link do vídeo ensinando
+                    </label>
+
+                    <input
+                        id="sensVideo"
+                        class="form-control"
+                        type="url"
+                        placeholder="https://..."
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="button-row">
+
+                <button
+                    class="success-button"
+                    onclick="addSensitivity()"
+                >
+                    ➕ Adicionar
+                </button>
+
+                <button
+                    class="secondary-button"
+                    onclick="clearSensitivityForm()"
+                >
+                    Limpar
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- LISTA -->
+
+        <div
+            id="sensitivityList"
+            class="sensitivity-grid"
+        >
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     TÉCNICA 1 2
+========================================================= -->
+
+<section
+    id="techniquePage"
+    class="page hidden"
+>
+
+    <div class="page-header">
+
+        <h1 class="page-title">
+            🎯 A Técnica de 1 2
+        </h1>
+
+        <p class="page-description">
+            Área reservada para sua técnica,
+            explicações, imagens e vídeos.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>
+            A Técnica de 1 2
+        </h2>
+
+        <p style="margin-top:10px;">
+            Este espaço pode receber o conteúdo
+            completo da técnica.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FOTOS
+========================================================= -->
+
+<section
+    id="photosPage"
+    class="page hidden"
+>
+
+    <div class="page-header">
+
+        <h1 class="page-title">
+            🖼️ Fotos
+        </h1>
+
+        <p class="page-description">
+            Área para fotos e imagens.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                🖼️
+            </div>
+
+            <p>
+                Espaço preparado para adicionar
+                fotos posteriormente.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     VÍDEOS
+========================================================= -->
+
+<section
+    id="videosPage"
+    class="page hidden"
+>
+
+    <div class="page-header">
+
+        <h1 class="page-title">
+            🎥 Vídeos
+        </h1>
+
+        <p class="page-description">
+            Área geral para vídeos.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                🎥
+            </div>
+
+            <p>
+                Espaço preparado para adicionar
+                vídeos posteriormente.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ADMINISTRAÇÃO
+========================================================= -->
+
+<section
+    id="adminPage"
+    class="page hidden"
+>
+
+    <div class="page-header">
+
+        <h1 class="page-title">
+            ⚙️ Administração
+        </h1>
+
+        <p class="page-description">
+            Área exclusiva do administrador.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2 style="margin-bottom:18px;">
+            👥 Usuários
+        </h2>
+
+
+        <div
+            id="userList"
+            class="user-list"
+        >
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+</section>
+
+
+<!-- TOAST -->
+
+<div id="toastContainer"></div>
+
+
+
+<script>
+
+/* =========================================================
+   CONFIGURAÇÃO
+========================================================= */
+
+const ADMIN_USERNAME = "camusal12";
+
+/*
+   IMPORTANTE:
+   Esta senha está aqui apenas porque este é um
+   protótipo local.
+
+   Em uma versão online segura, a autenticação
+   deve ser feita no servidor.
+*/
+const ADMIN_PASSWORD = "101222";
+
+
+/* =========================================================
+   PLATAFORMAS
+========================================================= */
+
+const platformNames = {
+
+    android: "📱 Mobile Android",
+
+    ios: "🍎 Mobile iOS",
+
+    emulator: "🎮 Emulador",
+
+    mobilador: "📲 Mobilador",
+
+    mobile: "📱 Mobile"
+
+};
+
+
+/* =========================================================
+   BANCO LOCAL
+========================================================= */
+
+let users =
+    JSON.parse(
+        localStorage.getItem("camusal_users")
+    ) || [];
+
+
+let sensitivities =
+    JSON.parse(
+        localStorage.getItem("camusal_sensitivities")
+    ) || [];
+
+
+let currentUser = null;
+
+let currentPlatform = null;
+
+
+/* =========================================================
+   GARANTIR ADMIN
+========================================================= */
+
+function ensureAdmin() {
+
+    const existingAdmin =
+        users.find(
+            user =>
+                user.username.toLowerCase()
+                === ADMIN_USERNAME.toLowerCase()
+        );
+
+    if (!existingAdmin) {
+
+        users.push({
+
+            id: generateId(),
+
+            username: ADMIN_USERNAME,
+
+            password: ADMIN_PASSWORD,
+
+            role: "admin",
+
+            createdAt: new Date().toISOString()
+
+        });
+
+    } else {
+
+        existingAdmin.role = "admin";
+
+    }
+
+    saveUsers();
+
+}
+
+
+/* =========================================================
+   ID
+========================================================= */
+
+function generateId() {
+
+    return (
+        Date.now().toString(36)
+        +
+        Math.random()
+            .toString(36)
+            .substring(2,8)
+    );
+
+}
+
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+function saveUsers() {
+
+    localStorage.setItem(
+        "camusal_users",
+        JSON.stringify(users)
+    );
+
+}
+
+
+function saveSensitivities() {
+
+    localStorage.setItem(
+        "camusal_sensitivities",
+        JSON.stringify(sensitivities)
+    );
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+function login() {
+
+    const username =
+        document
+            .getElementById("loginUsername")
+            .value
+            .trim();
+
+    const password =
+        document
+            .getElementById("loginPassword")
+            .value;
+
+    if (!username || !password) {
+
+        showToast(
+            "Preencha usuário e senha.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const user =
+        users.find(
+            u =>
+                u.username.toLowerCase()
+                === username.toLowerCase()
+                &&
+                u.password === password
+        );
+
+
+    if (!user) {
+
+        showToast(
+            "Usuário ou senha incorretos.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    currentUser = user;
+
+
+    sessionStorage.setItem(
+        "camusal_current_user",
+        user.username
+    );
+
+
+    startApp();
+
+}
+
+
+/* =========================================================
+   REGISTRO
+========================================================= */
+
+function registerUser() {
+
+    const username =
+        document
+            .getElementById("registerUsername")
+            .value
+            .trim();
+
+    const password =
+        document
+            .getElementById("registerPassword")
+            .value;
+
+
+    if (username.length < 3) {
+
+        showToast(
+            "O usuário precisa ter pelo menos 3 caracteres.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if (password.length < 4) {
+
+        showToast(
+            "A senha precisa ter pelo menos 4 caracteres.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if (
+        username.toLowerCase()
+        === ADMIN_USERNAME.toLowerCase()
+    ) {
+
+        showToast(
+            "Esse nome de usuário é reservado.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const exists =
+        users.some(
+            u =>
+                u.username.toLowerCase()
+                === username.toLowerCase()
+        );
+
+
+    if (exists) {
+
+        showToast(
+            "Esse usuário já existe.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const newUser = {
+
+        id: generateId(),
+
+        username,
+
+        password,
+
+        role: "member",
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    users.push(newUser);
+
+    saveUsers();
+
+
+    showToast(
+        "Conta criada com sucesso!",
+        "success"
+    );
+
+
+    document
+        .getElementById("registerUsername")
+        .value = "";
+
+    document
+        .getElementById("registerPassword")
+        .value = "";
+
+
+    showLogin();
+
+}
+
+
+/* =========================================================
+   MOSTRAR LOGIN
+========================================================= */
+
+function showLogin() {
+
+    document
+        .getElementById("loginForm")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("registerForm")
+        .classList.add("hidden");
+
+    document
+        .getElementById("loginSubtitle")
+        .textContent =
+        "Entre na sua conta";
+
+}
+
+
+/* =========================================================
+   MOSTRAR REGISTRO
+========================================================= */
+
+function showRegister() {
+
+    document
+        .getElementById("loginForm")
+        .classList.add("hidden");
+
+    document
+        .getElementById("registerForm")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("loginSubtitle")
+        .textContent =
+        "Crie sua conta gratuitamente";
+
+}
+
+
+/* =========================================================
+   INICIAR APP
+========================================================= */
+
+function startApp() {
+
+    document
+        .getElementById("loginPage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("app")
+        .classList.remove("hidden");
+
+
+    document
+        .getElementById("currentUsername")
+        .textContent =
+        currentUser.username;
+
+
+    document
+        .getElementById("currentRole")
+        .textContent =
+        currentUser.role === "admin"
+            ? "👑 Administrador"
+            : "👤 Membro";
+
+
+    const adminNav =
+        document.getElementById("adminNav");
+
+
+    if (currentUser.role === "admin") {
+
+        adminNav.classList.remove("hidden");
+
+    } else {
+
+        adminNav.classList.add("hidden");
+
+    }
+
+
+    updateDashboard();
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logout() {
+
+    currentUser = null;
+
+    sessionStorage.removeItem(
+        "camusal_current_user"
+    );
+
+
+    document
+        .getElementById("app")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("loginPage")
+        .classList.remove("hidden");
+
+
+    showLogin();
+
+}
+
+
+/* =========================================================
+   ABRIR PÁGINA
+========================================================= */
+
+function openPage(pageId, button) {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(
+            page =>
+                page.classList.add("hidden")
+        );
+
+
+    document
+        .getElementById(pageId)
+        .classList.remove("hidden");
+
+
+    document
+        .querySelectorAll(".nav-button")
+        .forEach(
+            btn =>
+                btn.classList.remove("active")
+        );
+
+
+    if (button) {
+
+        button.classList.add("active");
+
+    }
+
+
+    if (pageId === "adminPage") {
+
+        if (!isAdmin()) {
+
+            showToast(
+                "Acesso permitido apenas ao administrador.",
+                "error"
+            );
+
+            return;
+        }
+
+        renderUsers();
+
+    }
+
+
+    if (pageId === "freeFirePage") {
+
+        backToPlatforms();
+
+    }
+
+}
+
+
+/* =========================================================
+   IR PARA FREE FIRE
+========================================================= */
+
+function goToFreeFire() {
+
+    const button =
+        document.querySelectorAll(".nav-button")[1];
+
+    openPage(
+        "freeFirePage",
+        button
+    );
+
+}
+
+
+/* =========================================================
+   VERIFICAR ADMIN
+========================================================= */
+
+function isAdmin() {
+
+    return (
+        currentUser
+        &&
+        currentUser.role === "admin"
+    );
+
+}
+
+
+/* =========================================================
+   ABRIR PLATAFORMA
+========================================================= */
+
+function openPlatform(platform) {
+
+    currentPlatform = platform;
+
+
+    document
+        .getElementById("platformSelection")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("platformContent")
+        .classList.remove("hidden");
+
+
+    document
+        .getElementById("platformTitle")
+        .textContent =
+        platformNames[platform];
+
+
+    const adminForm =
+        document.getElementById(
+            "sensitivityAdminForm"
+        );
+
+
+    if (isAdmin()) {
+
+        adminForm.classList.remove("hidden");
+
+    } else {
+
+        adminForm.classList.add("hidden");
+
+    }
+
+
+    document
+        .getElementById("sensitivitySearch")
+        .value = "";
+
+
+    renderSensitivities();
+
+}
+
+
+/* =========================================================
+   VOLTAR PLATAFORMAS
+========================================================= */
+
+function backToPlatforms() {
+
+    currentPlatform = null;
+
+
+    document
+        .getElementById("platformSelection")
+        .classList.remove("hidden");
+
+
+    document
+        .getElementById("platformContent")
+        .classList.add("hidden");
+
+}
+
+
+/* =========================================================
+   ADICIONAR SENSIBILIDADE
+========================================================= */
+
+function addSensitivity() {
+
+    if (!isAdmin()) {
+
+        showToast(
+            "Somente o administrador pode adicionar.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if (!currentPlatform) {
+
+        return;
+    }
+
+
+    const name =
+        document
+            .getElementById("sensName")
+            .value
+            .trim();
+
+
+    if (!name) {
+
+        showToast(
+            "Digite o nome da configuração.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const sensitivity = {
+
+        id: generateId(),
+
+        platform: currentPlatform,
+
+        name,
+
+        dpi:
+            document
+                .getElementById("sensDpi")
+                .value || "-",
+
+        geral:
+            document
+                .getElementById("sensGeral")
+                .value || "-",
+
+        red:
+            document
+                .getElementById("sensRed")
+                .value || "-",
+
+        x2:
+            document
+                .getElementById("sens2x")
+                .value || "-",
+
+        x4:
+            document
+                .getElementById("sens4x")
+                .value || "-",
+
+        awm:
+            document
+                .getElementById("sensAwm")
+                .value || "-",
+
+        look:
+            document
+                .getElementById("sensLook")
+                .value || "-",
+
+        description:
+            document
+                .getElementById("sensDescription")
+                .value
+                .trim(),
+
+        video:
+            document
+                .getElementById("sensVideo")
+                .value
+                .trim(),
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    sensitivities.push(sensitivity);
+
+    saveSensitivities();
+
+
+    clearSensitivityForm();
+
+    renderSensitivities();
+
+    updateDashboard();
+
+
+    showToast(
+        "Sensibilidade adicionada!",
+        "success"
+    );
+
+}
+
+
+/* =========================================================
+   RENDER SENSIBILIDADES
+========================================================= */
+
+function renderSensitivities() {
+
+    const container =
+        document.getElementById(
+            "sensitivityList"
+        );
+
+
+    if (!currentPlatform) {
+
+        container.innerHTML = "";
+
+        return;
+    }
+
+
+    const search =
+        document
+            .getElementById(
+                "sensitivitySearch"
+            )
+            .value
+            .trim()
+            .toLowerCase();
+
+
+    let list =
+        sensitivities.filter(
+            item =>
+                item.platform
+                === currentPlatform
+        );
+
+
+    if (search) {
+
+        list =
+            list.filter(
+                item =>
+                    item.name
+                        .toLowerCase()
+                        .includes(search)
+                    ||
+                    item.description
+                        .toLowerCase()
+                        .includes(search)
+            );
+
+    }
+
+
+    if (list.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty-state"
+                 style="grid-column:1/-1;">
+
+                <div class="empty-icon">
+                    🎚️
+                </div>
+
+                <p>
+                    Nenhuma sensibilidade encontrada
+                    nesta plataforma.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML =
+        list
+            .map(
+                item =>
+                    sensitivityHTML(item)
+            )
+            .join("");
+
+}
+
+
+/* =========================================================
+   HTML SENSIBILIDADE
+========================================================= */
+
+function sensitivityHTML(item) {
+
+    const videoHTML =
+        item.video
+            ? `
+
+                <div class="tutorial">
+
+                    <div class="tutorial-title">
+                        🎥 Vídeo ensinando a configurar
+                    </div>
+
+                    <a
+                        class="video-link"
+                        href="${escapeHTML(item.video)}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        ▶ Abrir vídeo
+                    </a>
+
+                </div>
+
+            `
+            : `
+
+                <div class="tutorial">
+
+                    <div class="tutorial-title">
+                        🎥 Vídeo
+                    </div>
+
+                    <span style="color:#747f92;font-size:13px;">
+                        Ainda não foi adicionado um vídeo.
+                    </span>
+
+                </div>
+
+            `;
+
+
+    const adminButtons =
+        isAdmin()
+            ? `
+
+                <div class="card-actions">
+
+                    <button
+                        class="danger-button"
+                        onclick="deleteSensitivity('${item.id}')"
+                    >
+                        🗑️ Apagar
+                    </button>
+
+                </div>
+
+            `
+            : "";
+
+
+    return `
+
+        <article class="sensitivity-card">
+
+            <div class="sensitivity-top">
+
+                <h3>
+                    ${escapeHTML(item.name)}
+                </h3>
+
+                <span class="dpi-badge">
+                    DPI: ${escapeHTML(String(item.dpi))}
+                </span>
+
+            </div>
+
+
+            ${
+                item.description
+                    ? `
+                        <div class="sensitivity-description">
+                            ${escapeHTML(item.description)}
+                        </div>
+                    `
+                    : ""
+            }
+
+
+            <div class="sensitivity-values">
+
+                ${sensitivityValue(
+                    "Geral",
+                    item.geral
+                )}
+
+                ${sensitivityValue(
+                    "Ponto Vermelho",
+                    item.red
+                )}
+
+                ${sensitivityValue(
+                    "Mira 2x",
+                    item.x2
+                )}
+
+                ${sensitivityValue(
+                    "Mira 4x",
+                    item.x4
+                )}
+
+                ${sensitivityValue(
+                    "Mira AWM",
+                    item.awm
+                )}
+
+                ${sensitivityValue(
+                    "Olhadinha",
+                    item.look
+                )}
+
+            </div>
+
+
+            ${videoHTML}
+
+
+            ${adminButtons}
+
+        </article>
+
+    `;
+
+}
+
+
+/* =========================================================
+   VALOR
+========================================================= */
+
+function sensitivityValue(label, value) {
+
+    return `
+
+        <div class="sensitivity-value">
+
+            <span>
+                ${label}
+            </span>
+
+            <strong>
+                ${escapeHTML(String(value))}
+            </strong>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   APAGAR SENSIBILIDADE
+========================================================= */
+
+function deleteSensitivity(id) {
+
+    if (!isAdmin()) {
+
+        showToast(
+            "Somente o administrador pode apagar.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const confirmDelete =
+        confirm(
+            "Tem certeza que deseja apagar esta sensibilidade?"
+        );
+
+
+    if (!confirmDelete) {
+
+        return;
+    }
+
+
+    sensitivities =
+        sensitivities.filter(
+            item =>
+                item.id !== id
+        );
+
+
+    saveSensitivities();
+
+    renderSensitivities();
+
+    updateDashboard();
+
+
+    showToast(
+        "Sensibilidade apagada.",
+        "success"
+    );
+
+}
+
+
+/* =========================================================
+   LIMPAR FORM
+========================================================= */
+
+function clearSensitivityForm() {
+
+    const ids = [
+
+        "sensName",
+        "sensDpi",
+        "sensGeral",
+        "sensRed",
+        "sens2x",
+        "sens4x",
+        "sensAwm",
+        "sensLook",
+        "sensDescription",
+        "sensVideo"
+
+    ];
+
+
+    ids.forEach(
+        id =>
+            document.getElementById(id).value = ""
+    );
+
+}
+
+
+/* =========================================================
+   ADMIN USERS
+========================================================= */
+
+function renderUsers() {
+
+    const container =
+        document.getElementById(
+            "userList"
+        );
+
+
+    if (!isAdmin()) {
+
+        container.innerHTML = "";
+
+        return;
+    }
+
+
+    container.innerHTML =
+        users
+            .map(
+                user => `
+
+                    <div class="user-row">
+
+                        <div class="user-row-info">
+
+                            <strong>
+                                ${escapeHTML(user.username)}
+                            </strong>
+
+                            <span>
+                                Criado em:
+                                ${formatDate(user.createdAt)}
+                            </span>
+
+                        </div>
+
+
+                        <div>
+
+                            ${
+                                user.role === "admin"
+
+                                ? `
+                                    <span class="role-badge role-admin">
+                                        👑 Administrador
+                                    </span>
+                                `
+
+                                : `
+
+                                    <span class="role-badge">
+                                        👤 Membro
+                                    </span>
+
+                                    <button
+                                        class="danger-button"
+                                        style="margin-left:8px;"
+                                        onclick="deleteUser('${user.id}')"
+                                    >
+                                        🗑️
+                                    </button>
+
+                                `
+                            }
+
+                        </div>
+
+                    </div>
+
+                `
+            )
+            .join("");
+
+}
+
+
+/* =========================================================
+   APAGAR USUÁRIO
+========================================================= */
+
+function deleteUser(id) {
+
+    if (!isAdmin()) {
+
+        return;
+    }
+
+
+    const user =
+        users.find(
+            u =>
+                u.id === id
+        );
+
+
+    if (!user) {
+
+        return;
+    }
+
+
+    if (user.role === "admin") {
+
+        showToast(
+            "O administrador não pode ser apagado.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if (
+        !confirm(
+            `Apagar o usuário "${user.username}"?`
+        )
+    ) {
+
+        return;
+    }
+
+
+    users =
+        users.filter(
+            u =>
+                u.id !== id
+        );
+
+
+    saveUsers();
+
+    renderUsers();
+
+    updateDashboard();
+
+
+    showToast(
+        "Usuário apagado.",
+        "success"
+    );
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function updateDashboard() {
+
+    document
+        .getElementById("statUsers")
+        .textContent =
+        users.length;
+
+
+    document
+        .getElementById("statSensitivities")
+        .textContent =
+        sensitivities.length;
+
+
+    document
+        .getElementById("statVideos")
+        .textContent =
+        sensitivities.filter(
+            item =>
+                item.video
+                &&
+                item.video.trim()
+        ).length;
+
+
+    document
+        .getElementById("statPlatforms")
+        .textContent =
+        "5";
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(message, type = "info") {
+
+    const container =
+        document.getElementById(
+            "toastContainer"
+        );
+
+
+    const toast =
+        document.createElement("div");
+
+
+    toast.className =
+        `toast ${type}`;
+
+
+    toast.textContent =
+        message;
+
+
+    container.appendChild(toast);
+
+
+    setTimeout(
+        () => {
+
+            toast.remove();
+
+        },
+        3500
+    );
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replaceAll("&", "&amp;")
+
+        .replaceAll("<", "&lt;")
+
+        .replaceAll(">", "&gt;")
+
+        .replaceAll('"', "&quot;")
+
+        .replaceAll("'", "&#039;");
+
+}
+
+
+/* =========================================================
+   DATA
+========================================================= */
+
+function formatDate(date) {
+
+    if (!date) {
+        return "-";
+    }
+
+
+    try {
+
+        return new Date(date)
+            .toLocaleDateString(
+                "pt-BR"
+            );
+
+    } catch {
+
+        return "-";
+
+    }
+
+}
+
+
+/* =========================================================
+   RESTAURAR SESSÃO
+========================================================= */
+
+function restoreSession() {
+
+    ensureAdmin();
+
+
+    const savedUsername =
+        sessionStorage.getItem(
+            "camusal_current_user"
+        );
+
+
+    if (!savedUsername) {
+
+        return;
+    }
+
+
+    const user =
+        users.find(
+            u =>
+                u.username.toLowerCase()
+                === savedUsername.toLowerCase()
+        );
+
+
+    if (user) {
+
+        currentUser = user;
+
+        startApp();
+
+    }
+
+}
+
+
+/* =========================================================
+   TECLA ENTER NO LOGIN
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Enter"
+            &&
+            !document
+                .getElementById("loginForm")
+                .classList
+                .contains("hidden")
+        ) {
+
+            login();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   INICIALIZAÇÃO
+========================================================= */
+
+restoreSession();
+
+</script>
+
+</body>
+</html>
